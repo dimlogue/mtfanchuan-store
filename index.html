@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MtFanChuan Store</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #1c1c1e; background: #fafafa; line-height: 1.6; }
+  .banner { background: #fff3cd; color: #664d03; text-align: center; padding: 10px 16px; font-size: 14px; }
+  header { background: #fff; border-bottom: 1px solid #e5e5ea; position: sticky; top: 0; }
+  .head { max-width: 960px; margin: 0 auto; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .logo { font-size: 22px; font-weight: 700; letter-spacing: .2px; }
+  .logo span { color: #0a5cd6; }
+  nav a { color: #1c1c1e; text-decoration: none; margin-left: 18px; font-size: 15px; }
+  nav a:hover { color: #0a5cd6; }
+  main { max-width: 960px; margin: 0 auto; padding: 8px 20px 40px; }
+  .hero { background: linear-gradient(135deg, #e8f0fe, #fdf2f8); border-radius: 16px; padding: 36px 28px; margin: 24px 0; }
+  .hero h1 { margin: 0 0 8px; font-size: 30px; line-height: 1.25; }
+  .hero p { margin: 0; color: #48484a; max-width: 640px; }
+  h2 { font-size: 22px; margin: 36px 0 12px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 16px; }
+  .card { background: #fff; border: 1px solid #e5e5ea; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; }
+  .thumb { height: 150px; display: flex; align-items: center; justify-content: center; font-size: 56px; background: #f2f4f8; }
+  .body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+  .body h3 { margin: 0; font-size: 17px; }
+  .body p { margin: 0; color: #636366; font-size: 14px; flex: 1; }
+  .price { font-size: 18px; font-weight: 700; }
+  .tag { display: inline-block; background: #fff3cd; color: #664d03; border-radius: 999px; padding: 2px 10px; font-size: 12px; font-weight: 600; }
+  button.buy { margin-top: 8px; border: 0; border-radius: 999px; padding: 10px 16px; font-size: 15px; background: #0a5cd6; color: #fff; cursor: pointer; }
+  button.buy:hover { background: #084cb0; }
+  section.policy { background: #fff; border: 1px solid #e5e5ea; border-radius: 14px; padding: 20px 24px; margin-top: 16px; }
+  section.policy h3 { margin-top: 0; }
+  section.policy p { color: #48484a; }
+  footer { border-top: 1px solid #e5e5ea; background: #fff; }
+  .foot { max-width: 960px; margin: 0 auto; padding: 20px; display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 14px; }
+  .foot a { color: #0a5cd6; text-decoration: none; }
+  .foot span { color: #8e8e93; }
+  #notice { display: none; position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%); background: #1c1c1e; color: #fff; padding: 12px 20px; border-radius: 999px; font-size: 14px; box-shadow: 0 8px 24px rgba(0,0,0,.25); z-index: 10; }
+</style>
+</head>
+<body>
+<div class="banner">Our store is in preparation. Products below are on display only — purchases are not open yet.</div>
+<header>
+  <div class="head">
+    <div class="logo">MtFanChuan <span>Store</span></div>
+    <nav>
+      <a href="#products">Products</a>
+      <a href="#about">About Us</a>
+      <a href="#contact">Contact Us</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <div class="hero">
+    <h1>Small goods, made with care.</h1>
+    <p>MtFanChuan Store is a small cross-border shop currently in preparation. We are putting together our first catalog of handicrafts, apparel and digital goods. Nothing is on sale yet — this page shows what is coming.</p>
+  </div>
+
+  <h2 id="products">Featured products</h2>
+  <div class="grid">
+    <div class="card">
+      <div class="thumb">👜</div>
+      <div class="body">
+        <h3>Handwoven Tote Bag</h3>
+        <p>Sturdy everyday tote in natural cotton canvas, hand-finished seams. Display item.</p>
+        <div><span class="price">$29.99</span> <span class="tag">Coming soon</span></div>
+        <button class="buy" onclick="soon()">Buy now</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="thumb">👕</div>
+      <div class="body">
+        <h3>Cotton Graphic T-Shirt</h3>
+        <p>Soft 100% cotton tee with an original printed design. Display item.</p>
+        <div><span class="price">$19.99</span> <span class="tag">Coming soon</span></div>
+        <button class="buy" onclick="soon()">Buy now</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="thumb">🍵</div>
+      <div class="body">
+        <h3>Ceramic Tea Cup Set</h3>
+        <p>Two hand-glazed ceramic cups in a gift box. Display item.</p>
+        <div><span class="price">$34.99</span> <span class="tag">Coming soon</span></div>
+        <button class="buy" onclick="soon()">Buy now</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="thumb">🎨</div>
+      <div class="body">
+        <h3>Digital Illustration Pack</h3>
+        <p>A set of original illustrations delivered as digital downloads. Display item.</p>
+        <div><span class="price">$9.99</span> <span class="tag">Coming soon</span></div>
+        <button class="buy" onclick="soon()">Buy now</button>
+      </div>
+    </div>
+  </div>
+
+  <section class="policy" id="about">
+    <h3>About Us</h3>
+    <p>MtFanChuan Store is an independent online shop run by an individual seller based in China, preparing to sell handicrafts, apparel and digital goods to buyers worldwide. The store is currently in preparation: the catalog on this page is a preview, and no orders are being accepted yet. We will announce the opening here once sales begin.</p>
+  </section>
+
+  <section class="policy" id="contact">
+    <h3>Contact Us</h3>
+    <p>For questions about the store, please reach us through our PayPal page: <a href="https://www.paypal.me/MtFanChuan">paypal.me/MtFanChuan</a>. We aim to reply within 2 business days once the store opens.</p>
+  </section>
+
+  <section class="policy" id="privacy">
+    <h3>Privacy Policy</h3>
+    <p>This website does not collect accounts, passwords or payment information. No orders are processed on this site at present, so no personal data is collected through checkout. If a contact message is sent through our linked PayPal page, only the information the sender provides there is used to reply. This policy will be updated when sales open.</p>
+  </section>
+
+  <section class="policy" id="refund">
+    <h3>Refund Policy</h3>
+    <p>No orders are accepted and no payments are taken while the store is in preparation, so there is nothing to refund at this stage. Once sales open, the following will apply: buyers may request a refund within 7 days of delivery for damaged or wrongly shipped physical items; digital downloads, once delivered, are non-refundable unless the files are defective. Refunds, when granted, will be returned to the original payment method.</p>
+  </section>
+
+  <section class="policy" id="shipping">
+    <h3>Shipping Policy</h3>
+    <p>No shipments are made while the store is in preparation. Once sales open, physical items will be shipped from China by tracked mail; delivery times and shipping fees will be shown at checkout and vary by destination. Digital items will be delivered by download link to the buyer's email after payment. Buyers are responsible for any import duties or taxes in their own country.</p>
+  </section>
+</main>
+<footer>
+  <div class="foot">
+    <a href="#about">About Us</a>
+    <a href="#contact">Contact Us</a>
+    <a href="#privacy">Privacy Policy</a>
+    <a href="#refund">Refund Policy</a>
+    <a href="#shipping">Shipping Policy</a>
+    <span>© 2026 MtFanChuan Store — Store in preparation</span>
+  </div>
+</footer>
+<div id="notice">This store is still in preparation — purchases are not open yet.</div>
+<script>
+  function soon() {
+    var n = document.getElementById('notice');
+    n.style.display = 'block';
+    setTimeout(function () { n.style.display = 'none'; }, 3000);
+  }
+</script>
+</body>
+</html>
