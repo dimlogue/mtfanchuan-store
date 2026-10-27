@@ -44,6 +44,9 @@
   .note { color: #48484a; font-size: 14px; }
   a.pay { display: inline-block; margin-top: 12px; border-radius: 999px; padding: 12px 22px; font-size: 16px; font-weight: 600; background: #ffc439; color: #1c1c1e; text-decoration: none; }
   a.pay:hover { background: #ffb700; }
+  .qrblock { margin-top: 16px; border-top: 1px solid #e5e5ea; padding-top: 12px; }
+  .qrhead { font-weight: 700; margin-bottom: 8px; }
+  .qrimg { display: block; width: 200px; max-width: 70vw; height: auto; border-radius: 12px; }
   footer { border-top: 1px solid #e5e5ea; background: #fff; }
   .foot { max-width: 960px; margin: 0 auto; padding: 20px; display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 14px; }
   .foot a { color: #0a5cd6; text-decoration: none; }
@@ -123,6 +126,11 @@
       <div class="carttotal">Total: <span id="cartTotal">$0.00</span> USD</div>
       <p class="note">How delivery works: click “Pay with PayPal” to pay on PayPal's site. In the PayPal payment note, please leave the email address where you want the download link sent. We will email the download link to that address within 2 business days of payment. There is no automatic download on this site, and this site never asks for card numbers or payment details.</p>
       <a id="payBtn" class="pay" href="https://www.paypal.com/paypalme/MtFanChuan/9.99" target="_blank" rel="noopener">Pay with PayPal</a>
+      <div class="qrblock">
+        <div class="qrhead">Or scan to pay</div>
+        <img class="qrimg" src="assets/paypal-qr.jpg" alt="PayPal payment QR code for MtFanChuan Store">
+        <p class="note">This QR code is a PayPal payment code and does not carry an amount: after scanning, please pay the cart total in PayPal, and leave your email address in the PayPal payment note so we can send the download link within 2 business days. Scanning does not charge you automatically, and this site never asks for card numbers or payment details.</p>
+      </div>
     </div>
   </section>
 
