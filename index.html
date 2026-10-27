@@ -14,6 +14,8 @@
   .logo span { color: #0a5cd6; }
   nav a { color: #1c1c1e; text-decoration: none; margin-left: 18px; font-size: 15px; }
   nav a:hover { color: #0a5cd6; }
+  nav a.cartlink { display: inline-block; border: 1px solid #0a5cd6; color: #0a5cd6; border-radius: 999px; padding: 8px 16px; font-weight: 600; }
+  nav a.cartlink:hover { background: #e8f0fe; }
   main { max-width: 960px; margin: 0 auto; padding: 8px 20px 40px; }
   .hero { background: linear-gradient(135deg, #e8f0fe, #fdf2f8); border-radius: 16px; padding: 36px 28px; margin: 24px 0; }
   .hero h1 { margin: 0 0 8px; font-size: 30px; line-height: 1.25; }
@@ -27,11 +29,21 @@
   .body p { margin: 0; color: #636366; font-size: 14px; flex: 1; }
   .price { font-size: 18px; font-weight: 700; }
   .tag { display: inline-block; background: #fff3cd; color: #664d03; border-radius: 999px; padding: 2px 10px; font-size: 12px; font-weight: 600; }
+  .tag.sale { background: #e6f4ea; color: #137333; }
   button.buy { margin-top: 8px; border: 0; border-radius: 999px; padding: 10px 16px; font-size: 15px; background: #0a5cd6; color: #fff; cursor: pointer; }
   button.buy:hover { background: #084cb0; }
   section.policy { background: #fff; border: 1px solid #e5e5ea; border-radius: 14px; padding: 20px 24px; margin-top: 16px; }
   section.policy h3 { margin-top: 0; }
   section.policy p { color: #48484a; }
+  #cart { background: #fff; border: 1px solid #e5e5ea; border-radius: 14px; padding: 20px 24px; margin-top: 16px; }
+  #cart h3 { margin-top: 0; }
+  .cartline { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; }
+  .qtybtn { border: 1px solid #dadce0; background: #fff; border-radius: 999px; padding: 8px 16px; font-size: 16px; cursor: pointer; }
+  .qtybtn:hover { background: #f2f4f8; }
+  .carttotal { font-size: 18px; font-weight: 700; margin: 12px 0 4px; }
+  .note { color: #48484a; font-size: 14px; }
+  a.pay { display: inline-block; margin-top: 12px; border-radius: 999px; padding: 12px 22px; font-size: 16px; font-weight: 600; background: #ffc439; color: #1c1c1e; text-decoration: none; }
+  a.pay:hover { background: #ffb700; }
   footer { border-top: 1px solid #e5e5ea; background: #fff; }
   .foot { max-width: 960px; margin: 0 auto; padding: 20px; display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 14px; }
   .foot a { color: #0a5cd6; text-decoration: none; }
@@ -40,7 +52,7 @@
 </style>
 </head>
 <body>
-<div class="banner">Our store is in preparation. Products below are on display only — purchases are not open yet.</div>
+<div class="banner">Digital goods are now on sale. Physical goods are still in preparation.</div>
 <header>
   <div class="head">
     <div class="logo">MtFanChuan <span>Store</span></div>
@@ -48,13 +60,14 @@
       <a href="#products">Products</a>
       <a href="#about">About Us</a>
       <a href="#contact">Contact Us</a>
+      <a href="#cart" class="cartlink">🛒 Cart (<span id="cartCount">0</span>)</a>
     </nav>
   </div>
 </header>
 <main>
   <div class="hero">
     <h1>Small goods, made with care.</h1>
-    <p>MtFanChuan Store is a small cross-border shop currently in preparation. We are putting together our first catalog of handicrafts, apparel and digital goods. Nothing is on sale yet — this page shows what is coming.</p>
+    <p>MtFanChuan Store is a small cross-border shop. Digital goods are now on sale; physical goods are still in preparation. The Digital Illustration Pack below can be purchased now, while physical items remain on display only.</p>
   </div>
 
   <h2 id="products">Featured products</h2>
@@ -90,36 +103,52 @@
       <div class="thumb">🎨</div>
       <div class="body">
         <h3>Digital Illustration Pack</h3>
-        <p>A set of original illustrations delivered as digital downloads. Display item.</p>
-        <div><span class="price">$9.99</span> <span class="tag">Coming soon</span></div>
-        <button class="buy" onclick="soon()">Buy now</button>
+        <p>A set of original illustrations. Delivered by download link to your email after payment.</p>
+        <div><span class="price">$9.99</span> <span class="tag sale">On sale</span></div>
+        <button class="buy" onclick="addToCart()">Add to cart</button>
       </div>
     </div>
   </div>
 
+  <section id="cart">
+    <h3>Your cart</h3>
+    <p id="cartEmpty" class="note">Your cart is empty. Only the Digital Illustration Pack can be purchased at present — physical items are still in preparation.</p>
+    <div id="cartLine" class="cartline" style="display:none">
+      <span><strong>Digital Illustration Pack</strong> — $9.99 each</span>
+      <span><button class="qtybtn" onclick="changeQty(-1)" aria-label="Decrease quantity">−</button> <span id="cartQty">0</span> <button class="qtybtn" onclick="changeQty(1)" aria-label="Increase quantity">+</button></span>
+      <span id="cartLineTotal">$0.00</span>
+      <button class="qtybtn" onclick="removeFromCart()">Remove</button>
+    </div>
+    <div id="cartFoot" style="display:none">
+      <div class="carttotal">Total: <span id="cartTotal">$0.00</span> USD</div>
+      <p class="note">How delivery works: click “Pay with PayPal” to pay on PayPal's site. In the PayPal payment note, please leave the email address where you want the download link sent. We will email the download link to that address within 2 business days of payment. There is no automatic download on this site, and this site never asks for card numbers or payment details.</p>
+      <a id="payBtn" class="pay" href="https://www.paypal.com/paypalme/MtFanChuan/9.99" target="_blank" rel="noopener">Pay with PayPal</a>
+    </div>
+  </section>
+
   <section class="policy" id="about">
     <h3>About Us</h3>
-    <p>MtFanChuan Store is an independent online shop owned and operated by ZHITING LIU, based in China, preparing to sell handicrafts, apparel and digital goods to buyers worldwide. The store is currently in preparation: the catalog on this page is a preview, and no orders are being accepted yet. We will announce the opening here once sales begin.</p>
+    <p>MtFanChuan Store is an independent online shop owned and operated by ZHITING LIU, based in China, selling digital goods and preparing to sell handicrafts and apparel to buyers worldwide. Digital goods are now on sale: orders for the Digital Illustration Pack are accepted now. Physical items are still in preparation and remain on display only until their launch.</p>
   </section>
 
   <section class="policy" id="contact">
     <h3>Contact Us</h3>
-    <p>For questions about the store, please reach us through our PayPal page: <a href="https://www.paypal.me/MtFanChuan">paypal.me/MtFanChuan</a>. We aim to reply within 2 business days once the store opens.</p>
+    <p>For questions about the store, please reach us through our PayPal page: <a href="https://www.paypal.me/MtFanChuan">paypal.me/MtFanChuan</a>. We aim to reply within 2 business days.</p>
   </section>
 
   <section class="policy" id="privacy">
     <h3>Privacy Policy</h3>
-    <p>This website does not collect accounts, passwords or payment information. No orders are processed on this site at present, so no personal data is collected through checkout. If a contact message is sent through our linked PayPal page, only the information the sender provides there is used to reply. This policy will be updated when sales open.</p>
+    <p>This website does not collect accounts, passwords or payment information. Payment for digital goods is handled on PayPal's site, not here, so no payment details are collected through checkout. To deliver a digital order, we use the email address the buyer leaves in the PayPal payment note, only to send the download link. If a contact message is sent through our linked PayPal page, only the information the sender provides there is used to reply. This policy will be updated when physical sales open.</p>
   </section>
 
   <section class="policy" id="refund">
     <h3>Refund Policy</h3>
-    <p>No orders are accepted and no payments are taken while the store is in preparation, so there is nothing to refund at this stage. Once sales open, the following will apply: buyers may request a refund within 7 days of delivery for damaged or wrongly shipped physical items; digital downloads, once delivered, are non-refundable unless the files are defective. Refunds, when granted, will be returned to the original payment method.</p>
+    <p>Digital orders are accepted now; physical orders are not accepted yet, so there is nothing to refund for physical items at this stage. For physical items, once their sales open, buyers may request a refund within 7 days of delivery for damaged or wrongly shipped items. Digital downloads, once delivered, are non-refundable unless the files are defective. Refunds, when granted, will be returned to the original payment method.</p>
   </section>
 
   <section class="policy" id="shipping">
     <h3>Shipping Policy</h3>
-    <p>No shipments are made while the store is in preparation. Once sales open, physical items will be shipped from China by tracked mail; delivery times and shipping fees will be shown at checkout and vary by destination. Digital items will be delivered by download link to the buyer's email after payment. Buyers are responsible for any import duties or taxes in their own country.</p>
+    <p>No physical shipments are made yet, as physical items are still in preparation. Once physical sales open, physical items will be shipped from China by tracked mail; delivery times and shipping fees will be shown at checkout and vary by destination. Digital items are delivered by download link to the buyer's email after payment — please leave your email in the PayPal payment note; the link is sent within 2 business days. Buyers are responsible for any import duties or taxes in their own country.</p>
   </section>
 </main>
 <footer>
@@ -129,15 +158,46 @@
     <a href="#privacy">Privacy Policy</a>
     <a href="#refund">Refund Policy</a>
     <a href="#shipping">Shipping Policy</a>
-    <span>© 2026 MtFanChuan Store — Store in preparation</span>
+    <span>© 2026 MtFanChuan Store — Digital goods on sale; physical goods in preparation</span>
   </div>
 </footer>
-<div id="notice">This store is still in preparation — purchases are not open yet.</div>
+<div id="notice">This item is still in preparation — it is not on sale yet.</div>
 <script>
   function soon() {
     var n = document.getElementById('notice');
     n.style.display = 'block';
     setTimeout(function () { n.style.display = 'none'; }, 3000);
+  }
+  var cartQty = 0;
+  var UNIT = 9.99;
+  function fmt(n) { return '$' + n.toFixed(2); }
+  function renderCart() {
+    var has = cartQty > 0;
+    document.getElementById('cartCount').textContent = cartQty;
+    document.getElementById('cartEmpty').style.display = has ? 'none' : 'block';
+    document.getElementById('cartLine').style.display = has ? 'flex' : 'none';
+    document.getElementById('cartFoot').style.display = has ? 'block' : 'none';
+    if (has) {
+      var total = Math.round(UNIT * cartQty * 100) / 100;
+      document.getElementById('cartQty').textContent = cartQty;
+      document.getElementById('cartLineTotal').textContent = fmt(total);
+      document.getElementById('cartTotal').textContent = fmt(total);
+      document.getElementById('payBtn').href = 'https://www.paypal.com/paypalme/MtFanChuan/' + total.toFixed(2);
+    }
+  }
+  function addToCart() {
+    cartQty++;
+    renderCart();
+    document.getElementById('cart').scrollIntoView();
+  }
+  function changeQty(d) {
+    cartQty += d;
+    if (cartQty < 0) { cartQty = 0; }
+    renderCart();
+  }
+  function removeFromCart() {
+    cartQty = 0;
+    renderCart();
   }
 </script>
 </body>
