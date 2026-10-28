@@ -81,7 +81,6 @@
         <h3>Handwoven Tote Bag</h3>
         <p>Sturdy everyday tote in natural cotton canvas, hand-finished seams. Display item.</p>
         <div><span class="price">$29.99</span> <span class="tag">Coming soon</span></div>
-        <button class="buy" onclick="soon()">Buy now</button>
       </div>
     </div>
     <div class="card">
@@ -90,7 +89,6 @@
         <h3>Cotton Graphic T-Shirt</h3>
         <p>Soft 100% cotton tee with an original printed design. Display item.</p>
         <div><span class="price">$19.99</span> <span class="tag">Coming soon</span></div>
-        <button class="buy" onclick="soon()">Buy now</button>
       </div>
     </div>
     <div class="card">
@@ -99,7 +97,6 @@
         <h3>Ceramic Tea Cup Set</h3>
         <p>Two hand-glazed ceramic cups in a gift box. Display item.</p>
         <div><span class="price">$34.99</span> <span class="tag">Coming soon</span></div>
-        <button class="buy" onclick="soon()">Buy now</button>
       </div>
     </div>
     <div class="card">
@@ -169,13 +166,7 @@
     <span>© 2026 MtFanChuan Store — Digital goods on sale; physical goods in preparation</span>
   </div>
 </footer>
-<div id="notice">This item is still in preparation — it is not on sale yet.</div>
 <script>
-  function soon() {
-    var n = document.getElementById('notice');
-    n.style.display = 'block';
-    setTimeout(function () { n.style.display = 'none'; }, 3000);
-  }
   var cartQty = 0;
   var UNIT = 9.99;
   function fmt(n) { return '$' + n.toFixed(2); }
