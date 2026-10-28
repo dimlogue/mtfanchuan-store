@@ -24,29 +24,19 @@
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 16px; }
   .card { background: #fff; border: 1px solid #e5e5ea; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; }
   .thumb { height: 150px; display: flex; align-items: center; justify-content: center; font-size: 56px; background: #f2f4f8; }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
   .body h3 { margin: 0; font-size: 17px; }
   .body p { margin: 0; color: #636366; font-size: 14px; flex: 1; }
   .price { font-size: 18px; font-weight: 700; }
   .tag { display: inline-block; background: #fff3cd; color: #664d03; border-radius: 999px; padding: 2px 10px; font-size: 12px; font-weight: 600; }
   .tag.sale { background: #e6f4ea; color: #137333; }
-  button.buy { margin-top: 8px; border: 0; border-radius: 999px; padding: 10px 16px; font-size: 15px; background: #0a5cd6; color: #fff; cursor: pointer; }
-  button.buy:hover { background: #084cb0; }
+  button.buy, a.buy { margin-top: 8px; border: 0; border-radius: 999px; padding: 10px 16px; font-size: 15px; background: #0a5cd6; color: #fff; cursor: pointer; }
+  button.buy:hover, a.buy:hover { background: #084cb0; }
+  a.buy { text-align: center; text-decoration: none; display: block; }
   section.policy { background: #fff; border: 1px solid #e5e5ea; border-radius: 14px; padding: 20px 24px; margin-top: 16px; }
   section.policy h3 { margin-top: 0; }
   section.policy p { color: #48484a; }
-  #cart { background: #fff; border: 1px solid #e5e5ea; border-radius: 14px; padding: 20px 24px; margin-top: 16px; }
-  #cart h3 { margin-top: 0; }
-  .cartline { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; }
-  .qtybtn { border: 1px solid #dadce0; background: #fff; border-radius: 999px; padding: 8px 16px; font-size: 16px; cursor: pointer; }
-  .qtybtn:hover { background: #f2f4f8; }
-  .carttotal { font-size: 18px; font-weight: 700; margin: 12px 0 4px; }
-  .note { color: #48484a; font-size: 14px; }
-  a.pay { display: inline-block; margin-top: 12px; border-radius: 999px; padding: 12px 22px; font-size: 16px; font-weight: 600; background: #ffc439; color: #1c1c1e; text-decoration: none; }
-  a.pay:hover { background: #ffb700; }
-  .qrblock { margin-top: 16px; border-top: 1px solid #e5e5ea; padding-top: 12px; }
-  .qrhead { font-weight: 700; margin-bottom: 8px; }
-  .qrimg { display: block; width: 200px; max-width: 70vw; height: auto; border-radius: 12px; }
   footer { border-top: 1px solid #e5e5ea; background: #fff; }
   .foot { max-width: 960px; margin: 0 auto; padding: 20px; display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 14px; }
   .foot a { color: #0a5cd6; text-decoration: none; }
@@ -63,7 +53,6 @@
       <a href="#products">Products</a>
       <a href="#about">About Us</a>
       <a href="#contact">Contact Us</a>
-      <a href="#cart" class="cartlink">🛒 Cart (<span id="cartCount">0</span>)</a>
     </nav>
   </div>
 </header>
@@ -100,36 +89,15 @@
       </div>
     </div>
     <div class="card">
-      <div class="thumb">🎨</div>
+      <div class="thumb"><img src="assets/sample-bouquet.jpg" alt="Wildflower Bouquet watercolor illustration sample"></div>
       <div class="body">
         <h3>Digital Illustration Pack</h3>
-        <p>A set of original illustrations. Delivered by download link to your email after payment.</p>
-        <div><span class="price">$9.99</span> <span class="tag sale">On sale</span></div>
-        <button class="buy" onclick="addToCart()">Add to cart</button>
+        <p>Watercolor botanical illustrations, 4 high-resolution PNGs: Wildflower Bouquet in a Glass Jar; Eucalyptus and Foliage Branches; Sunflower and Daisy Arrangement; Potted Monstera and Ferns. AI-generated original artworks; personal use included. Instant download after purchase.</p>
+        <div><span class="price">£9.99</span> <span class="tag sale">On sale</span></div>
+        <a class="buy" href="https://payhip.com/b/l8Kf4" target="_blank" rel="noopener">Buy Now on Payhip</a>
       </div>
     </div>
   </div>
-
-  <section id="cart">
-    <h3>Your cart</h3>
-    <p id="cartEmpty" class="note">Your cart is empty. Only the Digital Illustration Pack can be purchased at present — physical items are still in preparation.</p>
-    <div id="cartLine" class="cartline" style="display:none">
-      <span><strong>Digital Illustration Pack</strong> — $9.99 each</span>
-      <span><button class="qtybtn" onclick="changeQty(-1)" aria-label="Decrease quantity">−</button> <span id="cartQty">0</span> <button class="qtybtn" onclick="changeQty(1)" aria-label="Increase quantity">+</button></span>
-      <span id="cartLineTotal">$0.00</span>
-      <button class="qtybtn" onclick="removeFromCart()">Remove</button>
-    </div>
-    <div id="cartFoot" style="display:none">
-      <div class="carttotal">Total: <span id="cartTotal">$0.00</span> USD</div>
-      <p class="note">How delivery works: click “Pay with PayPal” to pay on PayPal's site. In the PayPal payment note, please leave the email address where you want the download link sent. We will email the download link to that address within 2 business days of payment. There is no automatic download on this site, and this site never asks for card numbers or payment details.</p>
-      <a id="payBtn" class="pay" href="https://www.paypal.com/paypalme/MtFanChuan/9.99" target="_blank" rel="noopener">Pay with PayPal</a>
-      <div class="qrblock">
-        <div class="qrhead">Or scan to pay</div>
-        <img class="qrimg" src="assets/paypal-qr.jpg" alt="PayPal payment QR code for MtFanChuan Store">
-        <p class="note">This QR code is a PayPal payment code and does not carry an amount: after scanning, please pay the cart total in PayPal, and leave your email address in the PayPal payment note so we can send the download link within 2 business days. Scanning does not charge you automatically, and this site never asks for card numbers or payment details.</p>
-      </div>
-    </div>
-  </section>
 
   <section class="policy" id="about">
     <h3>About Us</h3>
@@ -143,7 +111,7 @@
 
   <section class="policy" id="privacy">
     <h3>Privacy Policy</h3>
-    <p>This website does not collect accounts, passwords or payment information. Payment for digital goods is handled on PayPal's site, not here, so no payment details are collected through checkout. To deliver a digital order, we use the email address the buyer leaves in the PayPal payment note, only to send the download link. If a contact message is sent through our linked PayPal page, only the information the sender provides there is used to reply. This policy will be updated when physical sales open.</p>
+    <p>This website does not collect accounts, passwords or payment information. Digital purchases are completed on Payhip's site (payment processed via PayPal), not here, so no payment details are collected through this site. Digital files are delivered by instant download after purchase. If a contact message is sent through our linked PayPal page, only the information the sender provides there is used to reply. This policy will be updated when physical sales open.</p>
   </section>
 
   <section class="policy" id="refund">
@@ -153,7 +121,7 @@
 
   <section class="policy" id="shipping">
     <h3>Shipping Policy</h3>
-    <p>No physical shipments are made yet, as physical items are still in preparation. Once physical sales open, physical items will be shipped from China by tracked mail; delivery times and shipping fees will be shown at checkout and vary by destination. Digital items are delivered by download link to the buyer's email after payment — please leave your email in the PayPal payment note; the link is sent within 2 business days. Buyers are responsible for any import duties or taxes in their own country.</p>
+    <p>No physical shipments are made yet, as physical items are still in preparation. Once physical sales open, physical items will be shipped from China by tracked mail; delivery times and shipping fees will be shown at checkout and vary by destination. Digital items are delivered instantly by download after purchase through our Payhip checkout. Buyers are responsible for any import duties or taxes in their own country.</p>
   </section>
 </main>
 <footer>
@@ -166,38 +134,5 @@
     <span>© 2026 MtFanChuan Store — Digital goods on sale; physical goods in preparation</span>
   </div>
 </footer>
-<script>
-  var cartQty = 0;
-  var UNIT = 9.99;
-  function fmt(n) { return '$' + n.toFixed(2); }
-  function renderCart() {
-    var has = cartQty > 0;
-    document.getElementById('cartCount').textContent = cartQty;
-    document.getElementById('cartEmpty').style.display = has ? 'none' : 'block';
-    document.getElementById('cartLine').style.display = has ? 'flex' : 'none';
-    document.getElementById('cartFoot').style.display = has ? 'block' : 'none';
-    if (has) {
-      var total = Math.round(UNIT * cartQty * 100) / 100;
-      document.getElementById('cartQty').textContent = cartQty;
-      document.getElementById('cartLineTotal').textContent = fmt(total);
-      document.getElementById('cartTotal').textContent = fmt(total);
-      document.getElementById('payBtn').href = 'https://www.paypal.com/paypalme/MtFanChuan/' + total.toFixed(2);
-    }
-  }
-  function addToCart() {
-    cartQty++;
-    renderCart();
-    document.getElementById('cart').scrollIntoView();
-  }
-  function changeQty(d) {
-    cartQty += d;
-    if (cartQty < 0) { cartQty = 0; }
-    renderCart();
-  }
-  function removeFromCart() {
-    cartQty = 0;
-    renderCart();
-  }
-</script>
 </body>
 </html>
